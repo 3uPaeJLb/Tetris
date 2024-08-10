@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Board extends JPanel {
-    private final int BOARD_HEIGHT = 480;
-    private final int BOARD_WIDTH = 300;
+    private final int BOARD_HEIGHT = 510;
+    private final int BOARD_WIDTH = 330;
     private final int BLOCK_SIZE = 30;
     @Override
     protected void paintComponent(Graphics g) {
