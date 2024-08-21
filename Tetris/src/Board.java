@@ -9,7 +9,7 @@ public class Board extends JPanel {
     private final int BOARD_HEIGHT = 510;
     private final int BOARD_WIDTH = 330;
     private final int BLOCK_SIZE = 30;
-    private static final int BLOCKS_IN_HEiGH = 16;
+    private static final int BLOCKS_IN_HEiGHT = 16;
     private static final int BLOCKS_IN_WIDTH = 10;
 
     private int[][] coordinates;
@@ -30,9 +30,8 @@ public class Board extends JPanel {
 
         setFocusable(true);
 
-        board = new Figures.Shapes[BLOCKS_IN_WIDTH * BLOCKS_IN_HEiGH];
-        for (int i = 0; i < BLOCKS_IN_WIDTH * BLOCKS_IN_HEiGH; i++)
-        {
+        board = new Figures.Shapes[BLOCKS_IN_WIDTH * BLOCKS_IN_HEiGHT];
+        for (int i = 0; i < BLOCKS_IN_WIDTH * BLOCKS_IN_HEiGHT; i++) {
             board[i] = Figures.Shapes.Noshape;
         }
         
@@ -54,21 +53,20 @@ public class Board extends JPanel {
     }
 
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         //drawing the board
         g.setColor(Color.black);
         g.fillRect(0,0,BOARD_WIDTH, BOARD_HEIGHT);
       
-        for(int i = 0; i < BLOCKS_IN_HEiGH * BLOCKS_IN_WIDTH; i++)
+        for(int i = 0; i < BLOCKS_IN_HEiGHT * BLOCKS_IN_WIDTH; i++)
         {
             if (board[i] != Figures.Shapes.Noshape)
             {
-                if (boardTop < BLOCKS_IN_HEiGH + 1 - (i / BLOCKS_IN_WIDTH) + 1 )
+                if (boardTop < BLOCKS_IN_HEiGHT + 1 - (i / BLOCKS_IN_WIDTH) + 1 )
                 {
-                    boardTop = (i / BLOCKS_IN_WIDTH) + 1 - BLOCKS_IN_HEiGH + 1;
+                    boardTop = (i / BLOCKS_IN_WIDTH) + 1 - BLOCKS_IN_HEiGHT + 1;
                 }
                 int x = i % BLOCKS_IN_WIDTH;
                 int y = i / BLOCKS_IN_WIDTH;
@@ -77,7 +75,7 @@ public class Board extends JPanel {
             }
         }
 
-        if (BLOCKS_IN_HEiGH - boardTop < 4)
+        if (BLOCKS_IN_HEiGHT - boardTop < 4)
         {
             timer.stop();
         }
@@ -87,8 +85,7 @@ public class Board extends JPanel {
         
         coordinates = figure.getCoords();
 
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             x = figure.getX(i) * BLOCK_SIZE;
             y = figure.getY(i) * BLOCK_SIZE;
             g.setColor(Color.RED);
@@ -97,21 +94,17 @@ public class Board extends JPanel {
 
         g.setColor(Color.white);
 
-        for(int i = 0; i < BOARD_HEIGHT; i++)
-        {
+        for(int i = 0; i < BOARD_HEIGHT; i++) {
             g.drawLine(0, i * BLOCK_SIZE, BOARD_HEIGHT, i * BLOCK_SIZE);
         }
 
-        for (int i = 0; i < BOARD_WIDTH; i++)
-        {
+        for (int i = 0; i < BOARD_WIDTH; i++) {
             g.drawLine(i * BLOCK_SIZE, 0, i * BLOCK_SIZE, BOARD_HEIGHT);
         }
     }
 
-    private void oneLineDown()
-    {
-        if (ableToMove(figure, curX, curY + BLOCK_SIZE))
-        {
+    private void oneLineDown() {
+        if (ableToMove(figure, curX, curY + BLOCK_SIZE)) {
             blockDropped();
         }
         else
@@ -119,37 +112,30 @@ public class Board extends JPanel {
             finishedFall = true;
     }
 
-    private void blockDropped()
-    {
-        for (int i = 0; i < 4; i++)
-        {
+    private void blockDropped() {
+        for (int i = 0; i < 4; i++) {
             int x = curX + figure.getX(i);
             int y = curY + figure.getY(i);
         }
 
-        if (finishedFall)
-        {
+        if (finishedFall) {
             newFigure();
         }
     }
 
-    private void newFigure()
-    {
+    private void newFigure() {
         figure.setRandomShape();
         curX = BOARD_WIDTH / 2;
         curY = 0;
 
-        if (!ableToMove(figure, curX, curY))
-        {
+        if (!ableToMove(figure, curX, curY)) {
             figure.setShape(Figures.Shapes.Noshape);
             timer.stop();
         }
     }
     
-    private boolean ableToMove(Figures newFigure, int newX, int newY)
-    {
-        for (int i = 0; i < 4; i++)
-        {
+    private boolean ableToMove(Figures newFigure, int newX, int newY) {
+        for (int i = 0; i < 4; i++) {
             int x = newX + this.figure.getX(i) * BLOCK_SIZE;
             int y = newY + this.figure.getY(i) * BLOCK_SIZE;
 
