@@ -1,13 +1,12 @@
 import javax.swing.*;
 
 public class FrameBuilder extends JFrame {
-    public FrameBuilder()
-    {
+
+    public FrameBuilder(){
         super("Tetris");
     }
 
-    public void buildFrame()
-    {
+    public void buildFrame(){
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100,100,315, 518);
         getContentPane().setLayout(null);
