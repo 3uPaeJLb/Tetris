@@ -54,4 +54,9 @@ public class Figures {
     public int getY(int i) {
         return coordinates[i][1];
     }
+
+    public Shapes getShape()
+    {
+        return pieceShape;
+    }
 }
